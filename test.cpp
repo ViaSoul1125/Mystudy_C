@@ -1,23 +1,11 @@
-#include <iostream>
-
+#include  <iostream>
+#include <stdio.h>
 using namespace std;
 
-
-
 int main() {
-
-    int a = 2, b = 3;
-
-    if (a > b) {
-
-        cout << a << endl;
-
-    } else {
-
-        cout << b << endl;
-
-    }
-
+    printf("Hello, World!\n");
+    string a="Hello, World!";
+    cout<<"Hello, World!"<<endl;
+    
     return 0;
-
 }
