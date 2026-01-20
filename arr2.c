@@ -15,7 +15,6 @@ int main()
     //     {"Charlie", 35}
     // };
 
-    int a[4]={1,2,3,4};
 
     int arr[3][4] = {
         {1, 2, 3, 4},
@@ -23,28 +22,29 @@ int main()
         {9, 10, 11, 12}
     };  
 
-    int *p_arr=&arr[0][0];
+    int *p_arr=&arr[0][0];//&arr[0][0] == arr
     *p_arr=100;// arr[0][0]=100
     p_arr+=1;
     *p_arr=200;// arr[0][1]=200
+
+    int (*p)[4]=arr;// arr == &arr[0]
+    
+    
     printf("%d\n", arr[0][0]);
-    printf("%d\n", arr[0][1]);
-    printf("%d\n", arr[1][0]);
 
-    printf("%d\n", a[2]);
-    printf("%d\n", *(a+2));
-
-    printf("%p\n", &a[0]);
+    printf("%p\n", arr);
     printf("%p\n", arr[0]);
 
     printf("%d\n", *arr[0]);
-    printf("%d\n", *(arr[0]+1));
-    printf("%d\n", arr[0][2]);//a[2]
 
+    printf("%d\n", *(arr[0]+1));// arr[0][1]
+    printf("%d\n", arr[0][1]);
+
+    
     printf("%d\n", *(arr[0]+4));// arr[1][0]
 
-    printf("%d\n", *arr[1]);
-    printf("%d\n", *arr[2]);
+    printf("%d\n", *arr[1]);// arr[1][0]
+    printf("%d\n", *arr[2]);// arr[2][0]
     return 0;
 
 }

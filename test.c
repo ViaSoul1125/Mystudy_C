@@ -1,22 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
-    int i, j;
-    printf("input i:");
-    scanf("%d", &i);
-    getchar();
-    printf("input j:");
-    scanf("%d", &j);
-    getchar();
-    if (i > j)
-    {
-        printf("%d", i - j);
-    }
-    if (j > i)
-    {
-        printf("%d", j - i);
-    }
+    char a[100];
+    char b[10]="he\0llo";
+    scanf("%s", a);
+    int c=strlen(a);
+    printf("%d\n",c);
+    c=strlen(b);
+    printf("%d\n",c);
+
 
     return 0;
 }

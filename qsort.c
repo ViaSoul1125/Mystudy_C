@@ -1,31 +1,87 @@
+// #include <stdio.h>
+// #include <stdlib.h>
+// // ±È½Ïº¯Êı£ºÕûĞÍÉıĞò
+// int compare_int_asc(const void *a, const void *b) {
+//     const int *pa = (const int *)a; // ½«void*×ª»»Îªint*
+//     const int *pb = (const int *)b;
+//     return *pa - *pb; // ÉıĞò£ºa-b
+// }
+// // ±È½Ïº¯Êı£ºÕûĞÍ½µĞò
+// int compare_int_desc(const void *a, const void *b) {
+//     const int *pa = (const int *)a;
+//     const int *pb = (const int *)b;
+//     return *pb - *pa; // ½µĞò£ºb-a
+// }
+
+// int main() {
+//     int arr[] = {42, 13, 7, 99, -5, 0, 66};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+//     qsort(arr, n, sizeof(int), compare_int_asc);
+//     printf("compare_int_asc\n");
+//     for (int i = 0; i < n; i++) {
+//         printf("%d ", arr[i]);
+//     }
+//     printf("\n");
+//     // ¸ÄÎª½µĞòÅÅĞò
+//     qsort(arr, n, sizeof(int), compare_int_desc);
+//     printf("compare_int_desc\n");
+//     for (int i = 0; i < n; i++) {
+//         printf("%d ", arr[i]);
+//     }
+//     printf("\n");
+//     return 0;
+// }
+
 #include <stdio.h>
-#include <stdlib.h>
-// æ¯”è¾ƒå‡½æ•°ï¼šæ•´å‹å‡åº
-int compare_int_asc(const void *a, const void *b) {
-    const int *pa = (const int *)a; // å°†void*è½¬æ¢ä¸ºint*
-    const int *pb = (const int *)b;
-    return *pa - *pb; // å‡åºï¼ša-b
-}
-// æ¯”è¾ƒå‡½æ•°ï¼šæ•´å‹é™åº
-int compare_int_desc(const void *a, const void *b) {
-    const int *pa = (const int *)a;
-    const int *pb = (const int *)b;
-    return *pb - *pa; // é™åºï¼šb-a
+
+void quick_sort(int arr[],int left,int right)
+{
+    int start=left;
+    int end=right;
+    if(start>=end)return; // µİ¹éÖÕÖ¹Ìõ¼ş
+    //1.Ñ¡Ôñ×î×ó±ßÔªËØÎª»ù×¼  base_value = a[start];
+    int base_value=arr[start];
+    //2.¶¯leftºÍright£¬Ñ¡Ôñ×óÎª»ù×¼£¬ÏÈ¶¯ÓÒ±ß
+    while(left < right)
+    {
+        //ÏÈ´ÓÓÒÍù×ó×ß£¬¶¯right
+        while(arr[right] >= base_value && left < right)
+        {
+            right--;
+        }
+        
+        //ÔÙ´Ó×óÍùÓÒ×ß£¬¶¯left, ÕÒµ½±Èbase_valueÒª´óµÄÔªËØ
+        while(arr[left] <= base_value && left < right)
+        {
+            left++;
+        }
+        //½»»»a[left] Óë a[right];
+        if(left < right)
+        {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+        }
+           
+    }
+    
+    //3.½»»»»ù×¼ËùÔÚÎ»ÖÃÔªËØa[start]Óëa[left]
+    arr[start] = arr[left];
+    arr[left] = base_value;
+    
+    //4.°´ÕÕÍ¬ÑùµÄ¿ìËÙÅÅĞòµÄ·½·¨´¦Àí×ó²à¼°ÓÒ²à
+    quick_sort(arr, start, left-1);
+    quick_sort(arr, right+1, end);
 }
 
-int main() {
-    int arr[] = {42, 13, 7, 99, -5, 0, 66};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    qsort(arr, n, sizeof(int), compare_int_asc);
-    printf("compare_int_asc\n");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-    // æ”¹ä¸ºé™åºæ’åº
-    qsort(arr, n, sizeof(int), compare_int_desc);
-    printf("compare_int_desc\n");
-    for (int i = 0; i < n; i++) {
+int main()
+{
+    int arr[] = {29,10,14,37,13,5,42,21};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    quick_sort(arr, 0, size-1);
+    printf("ÅÅĞòºóµÄÊı×éÎª£º\n");
+    for(int i=0;i<size;i++)
+    {
         printf("%d ", arr[i]);
     }
     printf("\n");
