@@ -96,55 +96,59 @@
 //思路
 //遍历数组，遇到1时，水洼数量加1，并调用递归函数将与该点相连的所有1变为0，表示已访问过，避免重复计数。
 
-int ROWS;
-int COLS;
+// int ROWS=0;
+// int COLS=0;
 
-void dfs(int grid[ROWS][COLS], int i, int j)
-{
-    if (i < 0 || i >= ROWS || j < 0 || j >= COLS || grid[i][j] == 0)
-    {
-        return;
-    }
-    grid[i][j] = 0; // 标记为已访问
-    dfs(grid, i + 1, j); // 下
-    dfs(grid, i - 1, j); // 上
-    dfs(grid, i, j + 1); // 右
-    dfs(grid, i, j - 1); // 左
-}
-int countPuddles(int grid[ROWS][COLS])
-{
-    int count = 0;
-    for (int i = 0; i < ROWS; i++)
-    {
-        for (int j = 0; j < COLS; j++)
-        {
-            if (grid[i][j] == 1)
-            {
-                count++;
-                dfs(grid, i, j);
-            }
-        }
-    }
-    return count;
-}
+// void btw(int arr[ROWS][COLS], int i, int j)
+// {
+//     if (i < 0 || i >= ROWS || j < 0 || j >= COLS || arr[i][j] == 0)//触碰边界或者0则直接返回
+//     {
+//         return;
+//     }
+//     arr[i][j] = 0; // 标记为已访问
+//     btw(arr, i + 1, j); // 下
+//     btw(arr, i - 1, j); // 上
+//     btw(arr, i, j + 1); // 右
+//     btw(arr, i, j - 1); // 左
+    
+// }
 
-int main()
-{
-    printf("请输入坪的行数和列数：");
-    scanf("%d %d", &ROWS, &COLS);
-    int grid[ROWS][COLS];
-    printf("请输入坪的状态（0表示无水，1表示有水）：\n");
-    for (int i = 0; i < ROWS; i++)
-    {
-        for (int j = 0; j < COLS; j++)
-        {
-            scanf("%d", &grid[i][j]);
-        }
-    }
-    int puddleCount = countPuddles(grid);
-    printf("水洼个数：%d\n", puddleCount);
-    return 0;
-}
+// int countwater(int arr[ROWS][COLS])
+// {
+//     int count=0;
+//     for(int i=0;i<ROWS;i++)
+//     {
+//         for(int j=0;j<COLS;j++)
+//         {
+//             if(arr[i][j]==1)
+//             {
+//                 count++;//计数1个
+//                 btw(arr,i,j);//然后调用btw将与该点相连的所有1变为0
+                
+//             }
+//         }
+//     }
+//     return count;
+// }
+
+// int main()
+// {
+//     printf("请输入坪的行数和列数：");
+//     scanf("%d %d", &ROWS, &COLS);
+//     int arr[ROWS][COLS];
+//     printf("请输入坪的状态（0表示无水，1表示有水）：\n");
+//     for (int i = 0; i < ROWS; i++)
+//     {
+//         for (int j = 0; j < COLS; j++)
+//         {
+//             scanf("%d", &arr[i][j]);
+//         }
+//     }
+//     int count=0;
+//     count = countwater(arr);
+//     printf("水洼个数：%d\n", count);
+//     return 0;
+// }
 
 
    
