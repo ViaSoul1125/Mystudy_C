@@ -33,7 +33,6 @@
 //     puts(str);
 // }
 
-
 // 2. 分析如下程序的输出结果 （假设机器64bits）
 
 // ```C
@@ -110,8 +109,6 @@
 //     puts(str);
 // }
 
-
-
 // 4. 字符串单词反转（保持单词内部顺序）
 
 // ```
@@ -119,44 +116,65 @@
 //     输出 program world hello
 // ```
 
-//寻找第一个空格，使空格前的字符串反转
+// 寻找第一个空格，使空格前的字符串反转
 
-// #include <stdio.h>
 
-// void reverse(char* str)
-// {
-//     char* p = str;//p找空格
-//     char* q = p;//q找开头
-//     char* r = p;//r找尾巴
-//     while(*p!='\0')
-//     {
-//         while (*p != ' ')
-//         {
-//             if (*p == '\0')
-//                 break;
-//             p++;
-//             r++; 
-//         }
-//         p++;
-//         r--;
-//         for (; q <= r; q++, r--)
-//         {
-//             char temp = *q;
-//             *q = *r;
-//             *r = temp;
-//         }
-//         r = p;
-//         q = p;
-//     }
-     
-// }
 
-// int main()
-// {
-//     char str[] = "hello world program";
-//     puts(str);
-//     reverse(str);
-//     puts(str);
-// }
+#include <stdio.h>
+
+void reverse_string(char* str)
+{
+    char* p = str;
+    char* q = str;
+    while (*q != '\0')
+    {
+        q++;
+    }
+    q--;
+    for (; p <= q; p++, q--)
+    {
+        char temp = *p;
+        *p = *q;
+        *q = temp;
+    }
+}
+
+void reverse(char* str)
+{
+    char* p = str;//p找空格
+    char* q = p;//q找开头
+    char* r = p;//r找尾巴
+    while (*p != '\0')
+    {
+        while (*p != ' ')
+        {
+            if (*p == '\0')
+                break;
+            p++;
+            r++;
+        }
+        p++;
+        r--;
+        for (; q <= r; q++, r--)
+        {
+            char temp = *q;
+            *q = *r;
+            *r = temp;
+        }
+        r = p;
+        q = p;
+    }
+
+}
+
+int main()
+{
+    char str[] = "hello world program";
+    puts(str);
+    reverse(str);
+    reverse_string(str);
+    puts(str);
+    return 0;
+}
 
 // 5. 有时间自己可以完成指针试卷上能做的题目
