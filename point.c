@@ -61,8 +61,9 @@ int * func(int arr[])
 
 int main()
 {
-    int arr[]={'1','2','3','4'};
-    int *p=arr;
-    p=func(&arr[2]);
-    printf("%c",*p);
+    char *p="abcdef";
+    printf("%c",*(p+2));
+    p+=2;
+    *p='Z';//修改字符串常量内容，未定义行为
+    printf("%c\n",*p);
 }
